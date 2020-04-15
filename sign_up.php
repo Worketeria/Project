@@ -38,7 +38,7 @@ include("includes/database.php");
 		<div class="container">
 			<div class="auth__inner">
 				<div class="auth__media">
-					<img src="./images/undraw_selfie.svg">
+					<img class="sign-up" src="./images/undraw_selfie.svg">
 				</div>
 				<div class="auth__auth">
 					<h1 class="auth__title">Creat your account</h1>
