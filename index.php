@@ -42,7 +42,7 @@
 				<nav class="navbar__menu">
 					<ul>
 						<li><a href="#worker">For workers</a></li>
-						<li><a href="">For work hirer</a></li>
+						<li><a href="#workerHirer">For work hirer</a></li>
 						<li><a href="#contact">Contact us</a></li>
             <li><a href="sign_up.php">Sign up</a></li>
             <li><a href="log_in.php">Log in</a></li>
@@ -145,7 +145,7 @@
  <!--workers ends-->
 
  <!--customer start-->
- 
+ <section id="workerHirer">
 	<div class="expanded landing__section">
 		<div class="container">
 			<div class="expanded__inner">
@@ -162,6 +162,7 @@
 			</div>
 		</div>
 	</div>
+	</section>
 
 <!--customer ends-->
 
