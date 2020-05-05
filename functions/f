@@ -3,15 +3,8 @@
 include("functions/functions.php");
 include("includes/database.php");
 ?>
-<html lang='en'>
-<head>
-	<meta class="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Worketeria</title>
-	<link rel='stylesheet' href='css/style.min.css' />
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<?php
 
+<?php
 $msg_name = $msg2_name = $w_name ="";
 $validname = false;
 if(isset($_POST['register'])){
@@ -25,15 +18,12 @@ if(isset($_POST['register'])){
 	if(empty($_POST['full_name'])){
 		$msg_name = "You must supply your name";
 	}
-
-	elseif($validname === false){
-		$msg2_name = "Only alphabets and white space allowed in Name";
+	elseif(!$validname){
+		$msg2_name = "Only alphabets and white space allowed";
 	}
-
 	elseif(strlen($name_subject) < 3){
 		$msg2_name = "Your name must be more than two character";
 	}
-
     else{
 		$w_name = $name_subject;
 	}
@@ -49,71 +39,32 @@ if(isset($_POST['register'])){
 	$w_pass = $_POST['password'];
 
 	$w_image = $_FILES['profile']['name'];
+	$w_image_tmp = $_FILES['profile']['tmp_name'];
 
+	move_uploaded_file($w_image_tmp,"workers/workers_profile_pics/$w_image");
 
+	$insert_w = "INSERT INTO workers ( worker_ip , worker_name , worker_email , worker_contact , worker_add , worker_city , worker_biography ,worker_job ,worker_image, worker_pass) values ('$ip','$w_name','$w_email','$w_number','$w_add','$w_city','$w_bio','$w_job','$w_image','$w_pass')";
 
-	if($w_name){
-	 	$insert_w = "INSERT INTO workers ( worker_ip , worker_name , worker_email , worker_contact , worker_add , worker_city , worker_biography ,worker_job ,worker_image, worker_pass) values ('$ip','$w_name','$w_email','$w_number','$w_add','$w_city','$w_bio','$w_job','$w_image','$w_pass')";
+	$run_w = mysqli_query($con,$insert_w);
+	
+	if($run_w){
+		echo "<script>swal('Hello $w_name!', 'Succesfully created account!', 'success')</script>";
+	}
 		
-		 $run_w = mysqli_query($con,$insert_w);
 }
-}
-	?>
+
+
+?>
+<html lang='en'>
+<head>
+	<meta class="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Worketeria</title>
+	<link rel='stylesheet' href='css/style.min.css' />
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<style>
 	.note {color: #ff0000}
 
-	#abc {
-width:100%;
-height:100%;
-opacity:.95;
-top:0;
-left:0;
-display:none;
-position:fixed;
-background-color:#313131;
-overflow:auto;
-}
-
-div#popupContact {
-position:absolute;
-left:50%;
-top:17%;
-margin-left:-202px;
-font-family:'Raleway',sans-serif
-}
-
-h2 {
-background-color:#FEFFED;
-padding:20px 35px;
-margin:-10px -50px;
-text-align:center;
-border-radius:10px 10px 0 0
-}
-
-hr {
-margin:10px -50px;
-border:0;
-border-top:1px solid #ccc
-}
-
-.popupImg{
-	margin-left:auto;
-	margin-right:auto;
-}
-
-#submit {
-text-decoration:none;
-width:100%;
-text-align:center;
-display:block;
-background-color:#FFBC00;
-color:#fff;
-border:1px solid #FFCB00;
-padding:10px 0;
-font-size:20px;
-cursor:pointer;
-border-radius:5px
-}
 	</style>
 	
 </head>
@@ -151,16 +102,8 @@ border-radius:5px
 
 					<!-- Username-->
 
-					<?php
-							if(isset($_POST['register'])){
-								 echo "<p class='note'>".$msg_name."</p>";
-								 echo "<p class='note'>".$msg2_name."</p>";
-							  } 
-							   ?> 
-
-
 						<label><b>Full Name</b><span class="note">*</span>:</label>
-						  <input type="text" name="full_name"  placeholder="Firstname Lastname" required autofocus="autofocus" value="
+						  <input type="text" name="full_name"  placeholder="Firstname Lastname" autofocus="autofocus" value="
 						  <?php if(empty($_POST['full_name'])){
 							  echo "";
 						  }
@@ -168,71 +111,42 @@ border-radius:5px
 						  echo $_POST['full_name'];
 						  } ?>" > 
 
-						 
+							<?php
+							if(isset($_POST['register'])){
+								 echo "<p class='note'>".$msg_name."</p>";
+								 echo "<p class='note'>".$msg2_name."</p>";
+							  } 
+							   ?>  
 
 					
 					<!-- email-->	
                         <input name="email" class="fakefield">
-						<label><b>Email</b><span class="note">*</span>:</label>
-						<input type="text" name="email" id='emailid' placeholder="you@example.com" required value="
-						  <?php if(empty($_POST['email'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['email'];
-						  } ?>">
+						<label><b>Email</b></label>
+						<input type="text" name="email" id='emailid' placeholder="you@example.com">
+						<span id="mail"></span>
 
 					<!-- number-->
 
 
                         <label><b>Mobile no:</b></label>
-						<input type="tel" name="number" id="contact" class="fakefield" required value="
-						  <?php if(empty($_POST['number'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['number'];
-						  } ?>">
+						<input type="tel" name="number" id="contact" class="fakefield" required>
+						<span id="contactNo"></span>
 
 					<!-- Address-->	
                         <label for="add" ><b>Address:</b></label>
-						<textarea id="add" name="user_add" required >
-						  <?php if(empty($_POST['user_add'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['user_add'];
-						  } ?>"</textarea>
+						<textarea id="add" name="user_add" required></textarea>
 
 					<!-- City-->	
                         <label><b>City</b></label>
-						<input type="text" name="city" class="fakefield" required value="
-						  <?php if(empty($_POST['city'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['city'];
-						  } ?>">
+						<input type="text" name="city" class="fakefield" required>
 						
 					<!-- Bio-->	
 						<label for="bio" ><b>Biography:</b></label>
-						<textarea id="bio" name="user_bio">
-						  <?php if(empty($_POST['user_bio'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['user_bio'];
-						  } ?></textarea>
+						<textarea id="bio" name="user_bio"></textarea>
 
 					<!-- Job role-->	
 						<label for="job"><b>Job Role:</b></label>
-						<select id="job" name="user_job" required value="
-						  <?php if(empty($_POST['user_job'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['user_job'];
-						  } ?>">
+						<select id="job" name="user_job" required>
 								
 						<?php
 
@@ -250,21 +164,9 @@ border-radius:5px
                         ?>
 						</select>
                        	<label><b>Profile photo</b></label>
-                        <input type="file" name="profile" required value="
-						  <?php if(empty($_FILES['profile']['name'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_FILES['profile']['name'];
-						  } ?>">
+                        <input type="file" name="profile" required>
 						<label><b>Password</b></label>
-						<input type="password" name="password" id='password' placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="off" required value="
-						  <?php if(empty($_POST['password'])){
-							  echo "";
-						  }
-						 else{
-						  echo $_POST['password'];
-						  } ?>">
+						<input type="password" name="password" id='password' placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="off" required>
 						
 						<button type='submit' name="register" class="button button__accent">Sign up</button>
                         
@@ -273,20 +175,6 @@ border-radius:5px
 			</div>
 		</div>
 	</div>
-
-	<div id="abc">
-<div id="popupContact">
-<div id="popupImgDiv">
-<img class="popupImg" src="images/popupImg.jpeg"
-</div>
-<hr>
-<p style="text-align:center;color:hsl(243, 100%, 69%);">Welcome <?php echo $w_name ?></p>
-<a href="log_in.php" id="submit">Login For Continue</a>
-
-
-</div>
-</div>
-
 <script src='js/app.min.js'></script>
 <script type="text/javascript">
   function validation()
@@ -338,17 +226,8 @@ if (contact == "") {
       return false;
     }
  }
-
-
 </script>
 
 </body>
 </html>
 
-<?php
-
-if($run_w){
-	
-	echo "<script>document.getElementById('abc').style.display = 'block';</script>";
-}
-?>
