@@ -1,9 +1,11 @@
 <?php
 
+//logout.php
 
 session_start();
-session_destroy();
-unset($_SESSION['worker_name']);
 
-header("location:/log_in.php");
+session_destroy();
+
+header('location:log_in.php');
+
 ?>

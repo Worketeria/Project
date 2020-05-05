@@ -62,41 +62,28 @@ session_start();
 		<div class="container">
 			<div class="navbar__inner">
 				<a href="index.php" class="navbar__logo">Worketeria</a>
-				<nav class="navbar__menu">
-          <div class="bs-example">
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
-
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="navbarCollapse" class="collapse navbar-collapse">
-
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                          <?php
-
-                            echo "<i class='fa fa-user-circle' aria-hidden='true'></i>"."  "."  ".$_SESSION['worker_name'];
-                           ?>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a href="myaccount.php" class="dropdown-item">My profile</a>
-                            <a href="https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=dropdowns-within-navbar" class="dropdown-item">Notification</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="log_out.php"class="dropdown-item">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <nav class="navbar__menu">
+        <ul>
+				<li><div class="pull-right">
+					   <a align="right" style="text-decoration:none; font-size:15px;"><?php echo $_SESSION['worker_name']; ?></a>
+				   </div>
+        </li>
+        <li><div class="pull-right">
+			<a align="right" style="text-decoration:none; font-size:15px;" href="log_out.php">Logout</a>
+				</div></li>
+          </ul>
+                   
+           
+      </nav>
     </div>
-			</nav>
+		
 				<div class="navbar__menu-mob"><a href="" id='toggle'><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" class=""></path></svg></a></div>
 			</div>
 		</div>
 	</div>
-
+  
     <!-- END nav -->
 
     <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -281,7 +268,7 @@ $("#dropdown").on("click", function(e){
     $(this).addClass("open");
     $(this).children("ul").slideDown("fast");
   }
-});
+});q
 
 </script>
 
