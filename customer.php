@@ -57,7 +57,7 @@ session_start();
 
 <body>
 
-  <!-- navbar -->
+  <!-- navbar-->
   <div class="navbar">
     <nav class="nav__mobile"></nav>
     <div class="container">
@@ -175,7 +175,7 @@ session_start();
                 </div>
               </div>
             </div>
-          </div>
+          </div>  -->
         </div>
       </div>
     </div>
@@ -267,20 +267,20 @@ session_start();
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/js/google-map.js"></script>
   <script src="js/js/main.js"></script>
-  <script>
-    $("#dropdown").on("click", function(e) {
-      e.preventDefault();
+	<script>
+$("#dropdown").on("click", function(e){
+  e.preventDefault();
 
-      if ($(this).hasClass("open")) {
-        $(this).removeClass("open");
-        $(this).children("ul").slideUp("fast");
-      } else {
-        $(this).addClass("open");
-        $(this).children("ul").slideDown("fast");
-      }
-    });
-  </script>
+  if($(this).hasClass("open")) {
+    $(this).removeClass("open");
+    $(this).children("ul").slideUp("fast");
+  } else {
+    $(this).addClass("open");
+    $(this).children("ul").slideDown("fast");
+  }
+});q
 
-</body>
+</script>
 
+  </body>
 </html>

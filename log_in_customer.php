@@ -26,7 +26,7 @@ include("includes/database.php");
 					<ul>
 						<li><a href="sign_up.php">Sign up as a worker</a></li>
                         <li><a href="sign_up_customer.php">Sign up as a work-hirer</a></li>
-						<li><a href="log_in_customer.php">Log in as a work-hirer</a></li>
+						<li><a href="log_in.php">Log in as a worker</a></li>
 						
 					</ul>
 				</nav>
@@ -73,19 +73,17 @@ if(isset($_POST['submit'])){
 
 	//$sel_c = "select * from worker where worker_pass = '$c_pass' AND worker_name='$c_name'";
 
-	$run_c = mysqli_query($con, "SELECT * FROM workers WHERE worker_name = '$c_name' AND worker_pass =  '$c_pass'" ) or die(mysqli_error($con));
+	$run_c = mysqli_query($con, "SELECT * FROM work_hirer WHERE customer_name = '$c_name' AND customer_pass =  '$c_pass'" ) or die(mysqli_error($con));
 
 	$check_worker = mysqli_num_rows($run_c);
 	if($check_worker>0){
 		while($row_pro = mysqli_fetch_array($run_c)){
-		$_SESSION['worker_name'] = $c_name;
-		$_SESSION['worker_id'] = $row_pro['worker_id'];
-		$_SESSION['worker_email'] = $row_pro['worker_email'];
-		$_SESSION['worker_contact'] = $row_pro['worker_contact'];
-		$_SESSION['worker_job'] = $row_pro['worker_job'];
-		
+		$_SESSION['customer_name'] = $c_name;
+		$_SESSION['customer_id'] = $row_pro['customer_id'];
+		$_SESSION['customer_email'] = $row_pro['customer_email'];
+
         echo "<script>swal('Hello $c_name!', 'logged in succesfully!', 'success')</script>";
-		header("Location:customer.php");
+		header("Location:work_hirer.php");
 		}
 	}
 

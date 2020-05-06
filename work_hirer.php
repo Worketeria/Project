@@ -8,7 +8,7 @@ session_start();
 ?>
 <html lang="en">
   <head>
-    <title>Worker Dashboard</title>
+    <title>Worke-hirer Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -125,26 +125,25 @@ p { font-size: 1.2em; font-weight: normal; line-height: 1.35em; color: #343434; 
     
 	  <!-- navbar -->
 	 <div class="navbar">
-		<nav class="nav__mobile"></nav>
+   <nav class="nav__mobile"></nav>
 		<div class="container">
 			<div class="navbar__inner">
 				<a href="index.php" class="navbar__logo">Worketeria</a>
-				<nav class="navbar__menu">
-				<div id="dropdown" class="ddmenu">
-         
-        <?php
-          
-          echo "<i class='fa fa-user-circle' aria-hidden='true'></i>"."  "."  ".$_SESSION['worker_name'];
-         ?>
-
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <nav class="navbar__menu">
         <ul>
-        <li><a href="#">My Profile</a></li><br>
-        <li><a href="#">Notification</a></li>
-        <li><a href="#">Account Settings</a></li><br>
-        <li><a href="log_out.php">Log Out</a></li>
-      </ul>
-    </div>
-			</nav>
+				<li><div class="pull-right">
+					   <a align="right" style="text-decoration:none; font-size:20px;"><?php echo $_SESSION['customer_name']; ?></a>
+				   </div>
+        </li>
+        <li><div class="pull-right">
+			<a  align="right" style="text-decoration:none; font-size:20px;"href="log_out.php">Logout</a>
+				</div></li>
+          </ul>
+                   
+           
+      </nav>
 				<div class="navbar__menu-mob"><a href="" id='toggle'><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" class=""></path></svg></a></div>
 			</div>
 		</div>
@@ -180,8 +179,8 @@ p { font-size: 1.2em; font-weight: normal; line-height: 1.35em; color: #343434; 
     <h2 font><div class="cta__inner">
 			
 			
-                <a href="#" class="button button__accent">Pending</a>
-                <a href="#" class="button button__accent">History</a>
+                <a href="worker_list.php" class="button button__accent">Pending</a>
+                <a href="worker_list.php" class="button button__accent">Shortlist Your workers</a>
 			</div></h2>
       <h2><a href="give_work_form.php" class="button button__accent">Book a service</a></h2>
 		</div>
